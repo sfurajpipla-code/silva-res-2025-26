@@ -1,5 +1,5 @@
 from shiny.express import ui,render,input
-from shiny import ui as ui_core
+from shiny import ui as ui_core 
 from shiny import reactive
 from io import StringIO
 import requests
@@ -21,7 +21,7 @@ def get_live_data(url):
         return pl.DataFrame() # Return empty if Google is down
     
 
-df = get_live_data(DataUrl)
+df = pl.read_csv("final_alive_clean.csv",  infer_schema_length=20000)
 df2 = df.rename({"HEIGHT(M)":"Height_of_tree_in_meter", "GIRTH(CM)":"Girth_of_tree_in_cmeter"})
 
 
