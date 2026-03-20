@@ -7,7 +7,7 @@ import altair as alt
 import polars as pl
 from shinywidgets import render_widget
 
-DataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTuYSbC_H3vtCJlKiYdrO-22_1LkgegEJ1_rYkIBdpxhDlz55Nv8ZYZHP4b9expHxfn_aY8VeeLzgLL/pub?gid=1223006997&single=true&output=csv"
+DataUrl = "https://raw.githubusercontent.com/sfurajpipla-code/silva-res-2025-26/refs/heads/main/final_alive_clean.csv"
 def get_live_data(url):
     response = requests.get(url)
     # Check if Google actually returned the data
@@ -21,7 +21,7 @@ def get_live_data(url):
         return pl.DataFrame() # Return empty if Google is down
     
 
-df = pl.read_csv("final_alive_clean.csv",  infer_schema_length=20000)
+df = get_live_data(DataUrl)
 df2 = df.rename({"HEIGHT(M)":"Height_of_tree_in_meter", "GIRTH(CM)":"Girth_of_tree_in_cmeter"})
 
 
